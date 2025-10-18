@@ -40,25 +40,25 @@ pub fn build(b: *std.Build) !void {
     const NNG_RESOLV_CONCURRENCY = b.option(usize, "NNG_RESOLV_CONCURRENCY", "Resolver (DNS) concurrency.") orelse 4;
     try args_arr.append(aa, b.fmt("-DNNG_RESOLV_CONCURRENCY={d}", .{NNG_RESOLV_CONCURRENCY}));
 
-    const NNG_NUM_TASKQ_THREADS = b.option(usize, "NNG_NUM_TASKQ_THREADS", "Fixed number of task threads, 0 for automatic") orelse 0;
+    const NNG_NUM_TASKQ_THREADS = b.option(usize, "NNG_NUM_TASKQ_THREADS", "Fixed number of task threads, 0 for automatic.") orelse 0;
     try args_arr.append(aa, b.fmt("-DNNG_NUM_TASKQ_THREADS={d}", .{NNG_NUM_TASKQ_THREADS}));
 
-    const NNG_MAX_TASKQ_THREADS = b.option(usize, "NNG_MAX_TASKQ_THREADS", "Upper bound on task threads, 0 for no limit") orelse 16;
+    const NNG_MAX_TASKQ_THREADS = b.option(usize, "NNG_MAX_TASKQ_THREADS", "Upper bound on task threads, 0 for no limit.") orelse 16;
     try args_arr.append(aa, b.fmt("-DNNG_MAX_TASKQ_THREADS={d}", .{NNG_MAX_TASKQ_THREADS}));
 
-    const NNG_NUM_EXPIRE_THREADS = b.option(usize, "NNG_NUM_EXPIRE_THREADS", "Fixed number of expire threads, 0 for automatic") orelse 0;
+    const NNG_NUM_EXPIRE_THREADS = b.option(usize, "NNG_NUM_EXPIRE_THREADS", "Fixed number of expire threads, 0 for automatic.") orelse 0;
     try args_arr.append(aa, b.fmt("-DNNG_NUM_EXPIRE_THREADS={d}", .{NNG_NUM_EXPIRE_THREADS}));
 
-    const NNG_MAX_EXPIRE_THREADS = b.option(usize, "NNG_MAX_EXPIRE_THREADS", "Upper bound on expire threads, 0 for no limit") orelse 8;
+    const NNG_MAX_EXPIRE_THREADS = b.option(usize, "NNG_MAX_EXPIRE_THREADS", "Upper bound on expire threads, 0 for no limit.") orelse 8;
     try args_arr.append(aa, b.fmt("-DNNG_MAX_EXPIRE_THREADS={d}", .{NNG_MAX_EXPIRE_THREADS}));
 
-    const NNG_NUM_POLLER_THREADS = b.option(usize, "NNG_NUM_POLLER_THREADS", "Fixed number of I/O poller threads, 0 for automatic") orelse 0;
+    const NNG_NUM_POLLER_THREADS = b.option(usize, "NNG_NUM_POLLER_THREADS", "Fixed number of I/O poller threads, 0 for automatic.") orelse 0;
     try args_arr.append(aa, b.fmt("-DNNG_NUM_POLLER_THREADS={d}", .{NNG_NUM_POLLER_THREADS}));
 
-    const NNG_MAX_POLLER_THREADS = b.option(usize, "NNG_MAX_POLLER_THREADS", "Upper bound on expire threads, 0 for no limit") orelse 8;
+    const NNG_MAX_POLLER_THREADS = b.option(usize, "NNG_MAX_POLLER_THREADS", "Upper bound on expire threads, 0 for no limit.") orelse 8;
     try args_arr.append(aa, b.fmt("-DNNG_MAX_POLLER_THREADS={d}", .{NNG_MAX_POLLER_THREADS}));
 
-    const NNG_ENABLE_TLS = b.option(bool, "NNG_ENABLE_TLS", "Supply TLS") orelse false;
+    const NNG_ENABLE_TLS = b.option(bool, "NNG_ENABLE_TLS", "Enable TLS (MBEDTLS).") orelse false;
     if (NNG_ENABLE_TLS) try args_arr.append(aa, "-DNNG_SUPP_TLS");
 
     switch (target.result.os.tag) {
